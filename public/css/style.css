@@ -400,6 +400,30 @@ ul.all-listings li {
 
 
 
+.header-front{
+	padding: 15px 40px;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+
+.login_link{
+	float: right;
+}
+
+.login_link a:hover{
+	text-decoration: underline;
+}
+
+.hint{
+	/*font-size: 12px;*/
+	margin-left: 15px; 
+	color: #777;
+}
+
+.rent-map-app{
+	float: left;
+}
 
 
 

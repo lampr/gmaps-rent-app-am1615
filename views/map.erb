@@ -1,0 +1,50 @@
+<div id="mapCanvas2" class="frontmap"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+var locations = [ 
+  <% @markers.each_with_index do |marker, index| %>
+    [
+      <% if marker.photo_id %>'<%= marker.photo_id %>',<% else %>'<%= "house-for-rent.jpg" %>',<% end %> 
+      <%= marker.lat %>, 
+      <%= marker.lng %>,
+      <%= marker.tel %>
+    ]<% unless index == @markers.size - 1 %>,<% end %> 
+  <% end %>
+];
+
+var marker, i;
+
+ 
+function initialize() { 
+ var latLng = new google.maps.LatLng( 35.513114, 24.017792 );		
+ var map = new google.maps.Map(document.getElementById('mapCanvas2'), {
+   zoom: 13,
+   center: latLng,
+   mapTypeId: google.maps.MapTypeId.ROADMAP
+ });
+ for (i = 0; i < locations.length; i++) {  
+  console.log(parseFloat(locations[i][1]) + " - " + parseFloat(locations[i][2]));
+   marker = new google.maps.Marker({
+     position: new google.maps.LatLng(parseFloat(locations[i][1]), parseFloat(locations[i][2])),
+     map: map
+   });
+   (function(marker, i) {
+     // add click event
+     google.maps.event.addListener(marker, 'click', function() {
+         infowindow = new google.maps.InfoWindow({
+             content: '<p>tel: '+ locations[i][3] +'</p><img style="height: 280px" src="/assets/'+locations[i][0]+'" alt="img"><p>Description</p>'
+         });
+         infowindow.open(map, marker);
+     });
+   })(marker, i); 
+ }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);  
+
+</script>
+
+
+
+

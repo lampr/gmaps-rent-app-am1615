@@ -1,0 +1,12 @@
+
+development:
+  host: ds033617.mongolab.com
+  port: 33617
+  username: geoipmoby
+  password: rc55btt
+  database: geoipmobi
+
+production:   
+  uri: mongodb://geoipmoby:rc55btt@ds033617.mongolab.com:33617/geoipmobi
+
+
